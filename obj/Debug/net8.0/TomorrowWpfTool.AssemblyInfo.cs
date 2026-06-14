@@ -13,11 +13,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("tomorrowwpf")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+480ffe711155409f332b9f92bd1930761868ba6c")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.2.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.2+5dd6f7748417b8fc14d3e38f9cbe65b9bdcf071b")]
 [assembly: System.Reflection.AssemblyProductAttribute("TomorrowWpfTool")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TomorrowWpfTool")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.2.0")]
 
 // Создано классом WriteCodeFragment MSBuild.
 
