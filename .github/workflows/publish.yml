@@ -1,0 +1,36 @@
+name: Publish NuGet Tool
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore TomorrowWpfTool.csproj
+
+      - name: Pack
+        run: dotnet pack TomorrowWpfTool.csproj -c Release -o ./artifacts
+
+      - name: NuGet login
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: meferum
+
+      - name: Push package
+        run: dotnet nuget push "./artifacts/*.nupkg" --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
