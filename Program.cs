@@ -30,6 +30,10 @@ internal static class Program
                     CopyDbScript(force);
                     return 0;
 
+                case "get-1c":
+                    CopyOneCFile(force);
+                    return 0;
+
                 default:
                     Console.WriteLine($"Неизвестная команда: {command}");
                     PrintHelp();
@@ -48,16 +52,27 @@ internal static class Program
     private static void PrintHelp()
     {
         Console.WriteLine("""
-        tomorrow-wpf — генератор файлов для WPF-проекта TomorrowEkz
+    tomorrow-wpf — генератор файлов для WPF-проекта TomorrowEkz
 
-        Команды:
-          tomorrow-wpf get-wpf              Скопировать WPF-окна, модели, контекст и изображения
-          tomorrow-wpf get-wpf --force      Перезаписать существующие файлы
-          tomorrow-wpf get-db-script        Скопировать файл "бд скрипты.txt"
-          tomorrow-wpf get-db-script --force Перезаписать существующий SQL-файл
+    Команды:
+      tomorrow-wpf get-wpf                Скопировать WPF-окна, модели, контекст и изображения
+      tomorrow-wpf get-wpf --force        Перезаписать существующие WPF-файлы
 
-        Запускать команды нужно из папки WPF-проекта, где лежит .csproj.
-        """);
+      tomorrow-wpf get-db-script          Скопировать файл "бд скрипты.txt"
+      tomorrow-wpf get-db-script --force  Перезаписать существующий SQL-файл
+
+      tomorrow-wpf get-1c                 Скопировать файл "1Cv8.cf"
+      tomorrow-wpf get-1c --force         Перезаписать существующий файл "1Cv8.cf"
+
+    Запускать команды нужно из папки WPF-проекта, где лежит .csproj.
+
+    Очистка истории PowerShell:
+      Set-PSReadLineOption -HistorySaveStyle SaveNothing
+      Clear-History
+      [Microsoft.PowerShell.PSConsoleReadLine]::ClearHistory()
+      Remove-Item (Get-PSReadLineOption).HistorySavePath -Force -ErrorAction SilentlyContinue
+      cls
+    """);
     }
 
     private static void GenerateWpfFiles(bool force)
@@ -190,6 +205,26 @@ internal static class Program
             or ".config"
             or ".json"
             or ".txt";
+    }
+    private static void CopyOneCFile(bool force)
+    {
+        string projectDir = Directory.GetCurrentDirectory();
+        string outputPath = Path.Combine(projectDir, "1Cv8.cf");
+
+        if (File.Exists(outputPath) && !force)
+        {
+            Console.WriteLine("Файл уже существует. Для перезаписи используй:");
+            Console.WriteLine("tomorrow-wpf get-1c --force");
+            return;
+        }
+
+        using Stream input = OpenEmbeddedResource("1Cv8.cf");
+        using FileStream output = File.Create(outputPath);
+        input.CopyTo(output);
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Файл \"1Cv8.cf\" успешно скопирован в текущую папку.");
+        Console.ResetColor();
     }
 
     private static Stream OpenEmbeddedResource(string resourceEnding)

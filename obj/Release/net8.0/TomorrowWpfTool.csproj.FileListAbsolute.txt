@@ -12,3 +12,4 @@ C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\refint\Tomorro
 C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\TomorrowWpfTool.pdb
 C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\TomorrowWpfTool.genruntimeconfig.cache
 C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\ref\TomorrowWpfTool.dll
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\TomorrowWpfTool.sourcelink.json

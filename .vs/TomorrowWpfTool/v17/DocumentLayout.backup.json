@@ -27,7 +27,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TomorrowWpfTool",
+              "Title": "TomorrowWpfTool.csproj",
               "DocumentMoniker": "C:\\Users\\alexb\\TomorrowWpfTool\\TomorrowWpfTool\\TomorrowWpfTool.csproj",
               "RelativeDocumentMoniker": "TomorrowWpfTool.csproj",
               "ToolTip": "C:\\Users\\alexb\\TomorrowWpfTool\\TomorrowWpfTool\\TomorrowWpfTool.csproj",
@@ -47,8 +47,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAEoAAAAAAAAAAAAwwLQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-14T18:33:01.827Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-14T18:33:01.827Z"
             }
           ]
         }
