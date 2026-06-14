@@ -1,0 +1,57 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\alexb\\TomorrowWpfTool\\TomorrowWpfTool\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DB66F25E-ADBA-21AB-6706-939FEA315CEA}|TomorrowWpfTool.csproj|c:\\users\\alexb\\tomorrowwpftool\\tomorrowwpftool\\tomorrowwpftool.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{DB66F25E-ADBA-21AB-6706-939FEA315CEA}|TomorrowWpfTool.csproj|solutionrelative:tomorrowwpftool.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB66F25E-ADBA-21AB-6706-939FEA315CEA}|TomorrowWpfTool.csproj|c:\\users\\alexb\\tomorrowwpftool\\tomorrowwpftool\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB66F25E-ADBA-21AB-6706-939FEA315CEA}|TomorrowWpfTool.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TomorrowWpfTool.csproj",
+              "DocumentMoniker": "C:\\Users\\alexb\\TomorrowWpfTool\\TomorrowWpfTool\\TomorrowWpfTool.csproj",
+              "RelativeDocumentMoniker": "TomorrowWpfTool.csproj",
+              "ToolTip": "C:\\Users\\alexb\\TomorrowWpfTool\\TomorrowWpfTool\\TomorrowWpfTool.csproj",
+              "RelativeToolTip": "TomorrowWpfTool.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-14T18:47:21.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\alexb\\TomorrowWpfTool\\TomorrowWpfTool\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\alexb\\TomorrowWpfTool\\TomorrowWpfTool\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAwwLQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-14T18:33:01.827Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,543 @@
+USE [master]
+GO
+/****** Object:  Database [TomorrowEkz]    Script Date: 14.06.2026 22:57:20 ******/
+CREATE DATABASE [TomorrowEkz]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'TomorrowEkz', FILENAME = N'D:\Database\TomorrowEkz.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'TomorrowEkz_log', FILENAME = N'D:\Database\TomorrowEkz_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [TomorrowEkz] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [TomorrowEkz].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [TomorrowEkz] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [TomorrowEkz] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [TomorrowEkz] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [TomorrowEkz] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [TomorrowEkz] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [TomorrowEkz] SET  MULTI_USER 
+GO
+ALTER DATABASE [TomorrowEkz] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [TomorrowEkz] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [TomorrowEkz] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [TomorrowEkz] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [TomorrowEkz] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [TomorrowEkz] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [TomorrowEkz] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [TomorrowEkz] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [TomorrowEkz]
+GO
+/****** Object:  Table [dbo].[Category]    Script Date: 14.06.2026 22:57:20 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Category](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](255) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Manufacturer]    Script Date: 14.06.2026 22:57:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Manufacturer](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](255) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Order]    Script Date: 14.06.2026 22:57:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Order](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[OrderDate] [datetime] NOT NULL,
+	[DeliveryDate] [datetime] NOT NULL,
+	[PickupPointId] [int] NOT NULL,
+	[UserId] [int] NOT NULL,
+	[Code] [nvarchar](50) NOT NULL,
+	[StatusId] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OrderDetails]    Script Date: 14.06.2026 22:57:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderDetails](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[OrderId] [int] NOT NULL,
+	[ProductId] [int] NOT NULL,
+	[Count] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OrderStatus]    Script Date: 14.06.2026 22:57:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderStatus](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](255) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PickupPoint]    Script Date: 14.06.2026 22:57:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PickupPoint](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](500) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Product]    Script Date: 14.06.2026 22:57:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Product](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Articul] [nvarchar](50) NOT NULL,
+	[Name] [nvarchar](255) NOT NULL,
+	[Unit] [nvarchar](50) NOT NULL,
+	[Price] [decimal](18, 2) NOT NULL,
+	[SupplierId] [int] NOT NULL,
+	[ManufacturerId] [int] NOT NULL,
+	[CategoryId] [int] NOT NULL,
+	[Discount] [int] NOT NULL,
+	[Count] [int] NOT NULL,
+	[Descriptiom] [nvarchar](max) NULL,
+	[ImagePath] [nvarchar](500) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Role]    Script Date: 14.06.2026 22:57:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Role](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](255) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Supplier]    Script Date: 14.06.2026 22:57:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Supplier](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](255) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[User]    Script Date: 14.06.2026 22:57:21 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[User](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[RoleId] [int] NOT NULL,
+	[FIO] [nvarchar](255) NOT NULL,
+	[Login] [nvarchar](255) NOT NULL,
+	[Password] [nvarchar](255) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Category] ON 
+GO
+INSERT [dbo].[Category] ([Id], [Name]) VALUES (1, N'Прихожая')
+GO
+INSERT [dbo].[Category] ([Id], [Name]) VALUES (2, N'Диван')
+GO
+INSERT [dbo].[Category] ([Id], [Name]) VALUES (3, N'Обувница')
+GO
+INSERT [dbo].[Category] ([Id], [Name]) VALUES (4, N'Пуф')
+GO
+INSERT [dbo].[Category] ([Id], [Name]) VALUES (5, N'Полка')
+GO
+INSERT [dbo].[Category] ([Id], [Name]) VALUES (6, N'Стул')
+GO
+SET IDENTITY_INSERT [dbo].[Category] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Manufacturer] ON 
+GO
+INSERT [dbo].[Manufacturer] ([Id], [Name]) VALUES (1, N'SVМЕБЕЛЬ')
+GO
+INSERT [dbo].[Manufacturer] ([Id], [Name]) VALUES (2, N'Мебелони')
+GO
+INSERT [dbo].[Manufacturer] ([Id], [Name]) VALUES (3, N'Инвуд')
+GO
+INSERT [dbo].[Manufacturer] ([Id], [Name]) VALUES (4, N'RIDBERG')
+GO
+SET IDENTITY_INSERT [dbo].[Manufacturer] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Order] ON 
+GO
+INSERT [dbo].[Order] ([Id], [OrderDate], [DeliveryDate], [PickupPointId], [UserId], [Code], [StatusId]) VALUES (1, CAST(N'2024-02-27T00:00:00.000' AS DateTime), CAST(N'2024-04-20T00:00:00.000' AS DateTime), 1, 7, N'901', 1)
+GO
+INSERT [dbo].[Order] ([Id], [OrderDate], [DeliveryDate], [PickupPointId], [UserId], [Code], [StatusId]) VALUES (2, CAST(N'2024-09-28T00:00:00.000' AS DateTime), CAST(N'2024-04-21T00:00:00.000' AS DateTime), 11, 8, N'902', 1)
+GO
+INSERT [dbo].[Order] ([Id], [OrderDate], [DeliveryDate], [PickupPointId], [UserId], [Code], [StatusId]) VALUES (3, CAST(N'2024-03-21T00:00:00.000' AS DateTime), CAST(N'2024-04-22T00:00:00.000' AS DateTime), 2, 9, N'903', 1)
+GO
+INSERT [dbo].[Order] ([Id], [OrderDate], [DeliveryDate], [PickupPointId], [UserId], [Code], [StatusId]) VALUES (4, CAST(N'2024-02-20T00:00:00.000' AS DateTime), CAST(N'2024-04-23T00:00:00.000' AS DateTime), 11, 10, N'904', 2)
+GO
+INSERT [dbo].[Order] ([Id], [OrderDate], [DeliveryDate], [PickupPointId], [UserId], [Code], [StatusId]) VALUES (5, CAST(N'2024-03-17T00:00:00.000' AS DateTime), CAST(N'2024-04-24T00:00:00.000' AS DateTime), 2, 7, N'905', 2)
+GO
+INSERT [dbo].[Order] ([Id], [OrderDate], [DeliveryDate], [PickupPointId], [UserId], [Code], [StatusId]) VALUES (6, CAST(N'2024-03-01T00:00:00.000' AS DateTime), CAST(N'2024-04-25T00:00:00.000' AS DateTime), 15, 8, N'906', 2)
+GO
+INSERT [dbo].[Order] ([Id], [OrderDate], [DeliveryDate], [PickupPointId], [UserId], [Code], [StatusId]) VALUES (7, CAST(N'2024-02-29T00:00:00.000' AS DateTime), CAST(N'2024-04-26T00:00:00.000' AS DateTime), 3, 9, N'907', 2)
+GO
+INSERT [dbo].[Order] ([Id], [OrderDate], [DeliveryDate], [PickupPointId], [UserId], [Code], [StatusId]) VALUES (8, CAST(N'2024-03-31T00:00:00.000' AS DateTime), CAST(N'2024-04-27T00:00:00.000' AS DateTime), 19, 10, N'908', 1)
+GO
+INSERT [dbo].[Order] ([Id], [OrderDate], [DeliveryDate], [PickupPointId], [UserId], [Code], [StatusId]) VALUES (9, CAST(N'2024-04-02T00:00:00.000' AS DateTime), CAST(N'2024-04-28T00:00:00.000' AS DateTime), 5, 9, N'909', 1)
+GO
+INSERT [dbo].[Order] ([Id], [OrderDate], [DeliveryDate], [PickupPointId], [UserId], [Code], [StatusId]) VALUES (10, CAST(N'2024-04-03T00:00:00.000' AS DateTime), CAST(N'2024-04-29T00:00:00.000' AS DateTime), 19, 10, N'910', 1)
+GO
+SET IDENTITY_INSERT [dbo].[Order] OFF
+GO
+SET IDENTITY_INSERT [dbo].[OrderDetails] ON 
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (1, 1, 1, 2)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (2, 2, 2, 1)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (3, 3, 3, 10)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (4, 4, 5, 5)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (5, 5, 6, 20)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (6, 6, 1, 2)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (7, 7, 2, 1)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (8, 8, 3, 10)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (9, 9, 5, 5)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (10, 10, 6, 20)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (11, 1, 2, 2)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (12, 2, 1, 1)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (13, 3, 4, 10)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (14, 4, 3, 4)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (15, 5, 7, 20)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (16, 6, 2, 2)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (17, 7, 1, 1)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (18, 8, 4, 10)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (19, 9, 3, 4)
+GO
+INSERT [dbo].[OrderDetails] ([Id], [OrderId], [ProductId], [Count]) VALUES (20, 10, 7, 20)
+GO
+SET IDENTITY_INSERT [dbo].[OrderDetails] OFF
+GO
+SET IDENTITY_INSERT [dbo].[OrderStatus] ON 
+GO
+INSERT [dbo].[OrderStatus] ([Id], [Name]) VALUES (1, N'Новый ')
+GO
+INSERT [dbo].[OrderStatus] ([Id], [Name]) VALUES (2, N'Завершен')
+GO
+SET IDENTITY_INSERT [dbo].[OrderStatus] OFF
+GO
+SET IDENTITY_INSERT [dbo].[PickupPoint] ON 
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (1, N'420151, г. Лесной, ул. Вишневая, 32')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (2, N'125061, г. Лесной, ул. Подгорная, 8')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (3, N'630370, г. Лесной, ул. Шоссейная, 24')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (4, N'400562, г. Лесной, ул. Зеленая, 32')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (5, N'614510, г. Лесной, ул. Маяковского, 47')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (6, N'410542, г. Лесной, ул. Светлая, 46')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (7, N'620839, г. Лесной, ул. Цветочная, 8')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (8, N'443890, г. Лесной, ул. Коммунистическая, 1')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (9, N'603379, г. Лесной, ул. Спортивная, 46')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (10, N'603721, г. Лесной, ул. Гоголя, 41')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (11, N'410172, г. Лесной, ул. Северная, 13')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (12, N'614611, г. Лесной, ул. Молодежная, 50')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (13, N'454311, г.Лесной, ул. Новая, 19')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (14, N'660007, г.Лесной, ул. Октябрьская, 19')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (15, N'603036, г. Лесной, ул. Садовая, 4')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (16, N'394060, г.Лесной, ул. Фрунзе, 43')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (17, N'410661, г. Лесной, ул. Школьная, 50')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (18, N'625590, г. Лесной, ул. Коммунистическая, 20')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (19, N'625683, г. Лесной, ул. 8 Марта')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (20, N'450983, г.Лесной, ул. Комсомольская, 26')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (21, N'394782, г. Лесной, ул. Чехова, 3')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (22, N'603002, г. Лесной, ул. Дзержинского, 28')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (23, N'450558, г. Лесной, ул. Набережная, 30')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (24, N'344288, г. Лесной, ул. Чехова, 1')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (25, N'614164, г.Лесной,  ул. Степная, 30')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (26, N'394242, г. Лесной, ул. Коммунистическая, 43')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (27, N'660540, г. Лесной, ул. Солнечная, 25')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (28, N'125837, г. Лесной, ул. Шоссейная, 40')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (29, N'125703, г. Лесной, ул. Партизанская, 49')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (30, N'625283, г. Лесной, ул. Победы, 46')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (31, N'614753, г. Лесной, ул. Полевая, 35')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (32, N'426030, г. Лесной, ул. Маяковского, 44')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (33, N'450375, г. Лесной ул. Клубная, 44')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (34, N'625560, г. Лесной, ул. Некрасова, 12')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (35, N'630201, г. Лесной, ул. Комсомольская, 17')
+GO
+INSERT [dbo].[PickupPoint] ([Id], [Name]) VALUES (36, N'190949, г. Лесной, ул. Мичурина, 26')
+GO
+SET IDENTITY_INSERT [dbo].[PickupPoint] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Product] ON 
+GO
+INSERT [dbo].[Product] ([Id], [Articul], [Name], [Unit], [Price], [SupplierId], [ManufacturerId], [CategoryId], [Discount], [Count], [Descriptiom], [ImagePath]) VALUES (1, N'А112Т4', N'Прихожая Фаворит 1 1420х2056х352ммм Дуб Делано/Цемент Светлый SV-М 1 шт', N'шт.', CAST(9577.00 AS Decimal(18, 2)), 1, 1, 1, 10, 0, N'Удивительно функциональная и практичная прихожая Фаворит 1, обладая характерными чертами Скандинавского стиля, выглядит эффектно и способна задать тон интерьеру дома, встречая вас и ваших гостей. ', N'1.jpg')
+GO
+INSERT [dbo].[Product] ([Id], [Articul], [Name], [Unit], [Price], [SupplierId], [ManufacturerId], [CategoryId], [Discount], [Count], [Descriptiom], [ImagePath]) VALUES (2, N'G843H5', N'Прихожая в коридор Твист с зеркалом мебель со шкафами, 120х37х202 см', N'шт.', CAST(8803.00 AS Decimal(18, 2)), 1, 2, 1, 25, 9, N'Этот стеллаж со шкафом в прихожую комнату станет отличным элементом для вашего интерьера. Мебель для дома обеспечивает удобное хранение перчаток, шапок, зонтов, сумок и других аксессуаров. ', N'2.jpg')
+GO
+INSERT [dbo].[Product] ([Id], [Articul], [Name], [Unit], [Price], [SupplierId], [ManufacturerId], [CategoryId], [Discount], [Count], [Descriptiom], [ImagePath]) VALUES (3, N'D325D4', N'Угловой диван Кромма Инвуд Лайт, серый двухместный диван, Velutto 32', N'шт.', CAST(29125.00 AS Decimal(18, 2)), 2, 3, 2, 5, 12, N'Угловой диван Инвуд Лайт 2 - стильный и комфортный диван подойдет для комнаты любого размера.', N'3.jpg')
+GO
+INSERT [dbo].[Product] ([Id], [Articul], [Name], [Unit], [Price], [SupplierId], [ManufacturerId], [CategoryId], [Discount], [Count], [Descriptiom], [ImagePath]) VALUES (4, N'S432T5', N'Обувница RIDBERG, с вешалкой, стальная, 170x60x26 см, 5 полок, вместимость до 15 пар', N'шт.', CAST(885.00 AS Decimal(18, 2)), 2, 4, 3, 15, 15, N'Обувница Ridberg с 5 полками и вешалкой - идеальное решение для организации хранения обуви в прихожей или гардеробной. ', N'4.jpg')
+GO
+INSERT [dbo].[Product] ([Id], [Articul], [Name], [Unit], [Price], [SupplierId], [ManufacturerId], [CategoryId], [Discount], [Count], [Descriptiom], [ImagePath]) VALUES (5, N'F325D4', N'Диван, Прямой диван, Диван-кровать Сити темно-коричневый. Квест-33', N'шт.', CAST(14322.00 AS Decimal(18, 2)), 3, 3, 2, 18, 3, N'Прямой диван-кровать Сити - это современное и функциональное решение для вашего дома.', N'5.jpg')
+GO
+INSERT [dbo].[Product] ([Id], [Articul], [Name], [Unit], [Price], [SupplierId], [ManufacturerId], [CategoryId], [Discount], [Count], [Descriptiom], [ImagePath]) VALUES (6, N'G432G6', N'Пуф трансформер кровать раскладушка светло-коричневый велюр', N'шт.', CAST(6149.00 AS Decimal(18, 2)), 4, 3, 4, 22, 3, N'Пуф трансформер 5в1 представляет собой уникальное сочетание функций, выступая в качестве пуфика, столика, кресла, шезлонга и дополнительного спального места. ', N'6.jpg')
+GO
+INSERT [dbo].[Product] ([Id], [Articul], [Name], [Unit], [Price], [SupplierId], [ManufacturerId], [CategoryId], [Discount], [Count], [Descriptiom], [ImagePath]) VALUES (7, N'H542F5', N'Диван, Прямой диван, диван кровать, Рио симпл механизм Пантограф. Симпл-16', N'шт.', CAST(20708.00 AS Decimal(18, 2)), 3, 3, 2, 4, 5, N'Диван Рио симпл от "Золотое Руно" - это сочетание комфорта, функциональности и стильного дизайна.', N'7.jpg')
+GO
+INSERT [dbo].[Product] ([Id], [Articul], [Name], [Unit], [Price], [SupplierId], [ManufacturerId], [CategoryId], [Discount], [Count], [Descriptiom], [ImagePath]) VALUES (8, N'C346F5', N'Полка настенная ромб Лофт, черная, 40 см', N'шт.', CAST(2843.00 AS Decimal(18, 2)), 4, 4, 5, 5, 4, N'Полочки для цветов в стиле лофт. Подойдут как для цветов, так и в качестве декоративного элемента. Полки подойдут для дома, офиса, кафе, ресторана. ​', N'8.jpg')
+GO
+INSERT [dbo].[Product] ([Id], [Articul], [Name], [Unit], [Price], [SupplierId], [ManufacturerId], [CategoryId], [Discount], [Count], [Descriptiom], [ImagePath]) VALUES (9, N'F256G6', N'Стулья для кухни', N'шт.', CAST(4760.00 AS Decimal(18, 2)), 4, 4, 6, 6, 2, N'Набор из четырех стульев в лофт-дизайне станет любимой мебелью для отдыха и подойдет для взрослых и детей. ', N'9.jpg')
+GO
+INSERT [dbo].[Product] ([Id], [Articul], [Name], [Unit], [Price], [SupplierId], [ManufacturerId], [CategoryId], [Discount], [Count], [Descriptiom], [ImagePath]) VALUES (10, N'J532V5', N'Магнитная полка, для холодильника, металл, 3шт, универсальная, чёрная', N'шт.', CAST(1387.00 AS Decimal(18, 2)), 4, 4, 5, 8, 6, N'Магнитная полка для холодильника - это удобный и практичный аксессуар, который поможет организовать пространство в вашем доме.', N'10.jpg')
+GO
+SET IDENTITY_INSERT [dbo].[Product] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Role] ON 
+GO
+INSERT [dbo].[Role] ([Id], [Name]) VALUES (1, N'Администратор')
+GO
+INSERT [dbo].[Role] ([Id], [Name]) VALUES (2, N'Менеджер')
+GO
+INSERT [dbo].[Role] ([Id], [Name]) VALUES (3, N'Авторизированный клиент')
+GO
+SET IDENTITY_INSERT [dbo].[Role] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Supplier] ON 
+GO
+INSERT [dbo].[Supplier] ([Id], [Name]) VALUES (1, N'Стройландия')
+GO
+INSERT [dbo].[Supplier] ([Id], [Name]) VALUES (2, N'Кромма')
+GO
+INSERT [dbo].[Supplier] ([Id], [Name]) VALUES (3, N'ЗолотоеРуно')
+GO
+INSERT [dbo].[Supplier] ([Id], [Name]) VALUES (4, N'KRYLOVMANUFACTURA')
+GO
+SET IDENTITY_INSERT [dbo].[Supplier] OFF
+GO
+SET IDENTITY_INSERT [dbo].[User] ON 
+GO
+INSERT [dbo].[User] ([Id], [RoleId], [FIO], [Login], [Password]) VALUES (1, 1, N'Никифорова Анна Семеновна', N'94d5ous@gmail.com', N'uzWC67')
+GO
+INSERT [dbo].[User] ([Id], [RoleId], [FIO], [Login], [Password]) VALUES (2, 1, N'Стелина Евгения Петровна', N'uth4iz@mail.com', N'2L6KZG')
+GO
+INSERT [dbo].[User] ([Id], [RoleId], [FIO], [Login], [Password]) VALUES (3, 1, N'Никифорова Весения Николаевна', N'5d4zbu@tutanota.com', N'rwVDh9')
+GO
+INSERT [dbo].[User] ([Id], [RoleId], [FIO], [Login], [Password]) VALUES (4, 2, N'Сазонов Руслан Германович', N'ptec8ym@yahoo.com', N'LdNyos')
+GO
+INSERT [dbo].[User] ([Id], [RoleId], [FIO], [Login], [Password]) VALUES (5, 2, N'Одинцов Серафим Артёмович', N'1qz4kw@mail.com', N'gynQMT')
+GO
+INSERT [dbo].[User] ([Id], [RoleId], [FIO], [Login], [Password]) VALUES (6, 2, N'Старикова Елена Павловна', N'4np6se@mail.com', N'AtnDjr')
+GO
+INSERT [dbo].[User] ([Id], [RoleId], [FIO], [Login], [Password]) VALUES (7, 3, N'Степанов Михаил Артёмович', N'yzls62@outlook.com', N'JlFRCZ')
+GO
+INSERT [dbo].[User] ([Id], [RoleId], [FIO], [Login], [Password]) VALUES (8, 3, N'Михайлюк Анна Вячеславовна', N'1diph5e@tutanota.com', N'8ntwUp')
+GO
+INSERT [dbo].[User] ([Id], [RoleId], [FIO], [Login], [Password]) VALUES (9, 3, N'Ситдикова Елена Анатольевна', N'tjde7c@yahoo.com', N'YOyhfR')
+GO
+INSERT [dbo].[User] ([Id], [RoleId], [FIO], [Login], [Password]) VALUES (10, 3, N'Ворсин Петр Евгеньевич', N'wpmrc3do@tutanota.com', N'RSbvHv')
+GO
+SET IDENTITY_INSERT [dbo].[User] OFF
+GO
+ALTER TABLE [dbo].[Order]  WITH CHECK ADD  CONSTRAINT [FK_Order_OrderStatus] FOREIGN KEY([StatusId])
+REFERENCES [dbo].[OrderStatus] ([Id])
+GO
+ALTER TABLE [dbo].[Order] CHECK CONSTRAINT [FK_Order_OrderStatus]
+GO
+ALTER TABLE [dbo].[Order]  WITH CHECK ADD  CONSTRAINT [FK_Order_PickupPoint] FOREIGN KEY([PickupPointId])
+REFERENCES [dbo].[PickupPoint] ([Id])
+GO
+ALTER TABLE [dbo].[Order] CHECK CONSTRAINT [FK_Order_PickupPoint]
+GO
+ALTER TABLE [dbo].[Order]  WITH CHECK ADD  CONSTRAINT [FK_Order_User] FOREIGN KEY([UserId])
+REFERENCES [dbo].[User] ([Id])
+GO
+ALTER TABLE [dbo].[Order] CHECK CONSTRAINT [FK_Order_User]
+GO
+ALTER TABLE [dbo].[OrderDetails]  WITH CHECK ADD  CONSTRAINT [FK_OrderDetails_Order] FOREIGN KEY([OrderId])
+REFERENCES [dbo].[Order] ([Id])
+GO
+ALTER TABLE [dbo].[OrderDetails] CHECK CONSTRAINT [FK_OrderDetails_Order]
+GO
+ALTER TABLE [dbo].[OrderDetails]  WITH CHECK ADD  CONSTRAINT [FK_OrderDetails_Product] FOREIGN KEY([ProductId])
+REFERENCES [dbo].[Product] ([Id])
+GO
+ALTER TABLE [dbo].[OrderDetails] CHECK CONSTRAINT [FK_OrderDetails_Product]
+GO
+ALTER TABLE [dbo].[Product]  WITH CHECK ADD  CONSTRAINT [FK_Product_Category] FOREIGN KEY([CategoryId])
+REFERENCES [dbo].[Category] ([Id])
+GO
+ALTER TABLE [dbo].[Product] CHECK CONSTRAINT [FK_Product_Category]
+GO
+ALTER TABLE [dbo].[Product]  WITH CHECK ADD  CONSTRAINT [FK_Product_Manufacturer] FOREIGN KEY([ManufacturerId])
+REFERENCES [dbo].[Manufacturer] ([Id])
+GO
+ALTER TABLE [dbo].[Product] CHECK CONSTRAINT [FK_Product_Manufacturer]
+GO
+ALTER TABLE [dbo].[Product]  WITH CHECK ADD  CONSTRAINT [FK_Product_Supplier] FOREIGN KEY([SupplierId])
+REFERENCES [dbo].[Supplier] ([Id])
+GO
+ALTER TABLE [dbo].[Product] CHECK CONSTRAINT [FK_Product_Supplier]
+GO
+ALTER TABLE [dbo].[User]  WITH CHECK ADD  CONSTRAINT [FK_User_Role] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[Role] ([Id])
+GO
+ALTER TABLE [dbo].[User] CHECK CONSTRAINT [FK_User_Role]
+GO
+USE [master]
+GO
+ALTER DATABASE [TomorrowEkz] SET  READ_WRITE 
+GO

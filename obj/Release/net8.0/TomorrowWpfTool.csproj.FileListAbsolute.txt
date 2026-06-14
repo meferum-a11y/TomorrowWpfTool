@@ -1,0 +1,14 @@
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\TomorrowWpfTool.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\TomorrowWpfTool.AssemblyInfoInputs.cache
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\TomorrowWpfTool.AssemblyInfo.cs
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\TomorrowWpfTool.csproj.CoreCompileInputs.cache
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\TomorrowWpfTool.exe
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\TomorrowWpfTool.deps.json
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\TomorrowWpfTool.runtimeconfig.json
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\TomorrowWpfTool.dll
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\TomorrowWpfTool.pdb
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\TomorrowWpfTool.dll
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\refint\TomorrowWpfTool.dll
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\TomorrowWpfTool.pdb
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\TomorrowWpfTool.genruntimeconfig.cache
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\ref\TomorrowWpfTool.dll

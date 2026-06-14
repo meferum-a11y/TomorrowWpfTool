@@ -1,0 +1,5 @@
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\publish\TomorrowWpfTool.exe
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\publish\TomorrowWpfTool.dll
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\publish\TomorrowWpfTool.deps.json
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\publish\TomorrowWpfTool.runtimeconfig.json
+C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\publish\TomorrowWpfTool.pdb

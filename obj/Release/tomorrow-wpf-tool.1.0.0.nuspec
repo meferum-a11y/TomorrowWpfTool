@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>tomorrow-wpf-tool</id>
+    <version>1.0.0</version>
+    <authors>tomorrowwpf</authors>
+    <description>Package Description</description>
+    <packageTypes>
+      <packageType name="DotnetTool" />
+    </packageTypes>
+    <repository type="git" />
+  </metadata>
+  <files>
+    <file src="C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\obj\Release\net8.0\DotnetToolSettings.xml" target="tools\net8.0\any\DotnetToolSettings.xml" />
+    <file src="C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\publish\TomorrowWpfTool.dll" target="tools\net8.0\any\TomorrowWpfTool.dll" />
+    <file src="C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\publish\TomorrowWpfTool.deps.json" target="tools\net8.0\any\TomorrowWpfTool.deps.json" />
+    <file src="C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\publish\TomorrowWpfTool.runtimeconfig.json" target="tools\net8.0\any\TomorrowWpfTool.runtimeconfig.json" />
+    <file src="C:\Users\alexb\TomorrowWpfTool\TomorrowWpfTool\bin\Release\net8.0\publish\TomorrowWpfTool.pdb" target="tools\net8.0\any\TomorrowWpfTool.pdb" />
+  </files>
+</package>
